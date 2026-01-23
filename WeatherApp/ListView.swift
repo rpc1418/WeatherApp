@@ -53,7 +53,7 @@ struct ListView: View {
                 .toolbar(content: {
                     ToolbarItem(placement: .topBarLeading){
                         Button(action: {
-                            path.removeLast()  // Your action: navigate, toggle, etc.
+                            path.removeLast()
                         }) {
                             Text("Back")
                                 .foregroundStyle(.blue)
@@ -66,7 +66,7 @@ struct ListView: View {
                             .foregroundStyle(.white)
                     }
                 }
-                ).searchable(text: $listViewModel.searchText)
+                ).searchable(text: $listViewModel.searchText,placement: .navigationBarDrawer(displayMode: .always), prompt:"Search any location...!")
                 
                
                 Button("See Developer Info") {

@@ -40,8 +40,6 @@ struct ContentView: View {
                         Text("See Developer info")
                             .padding()
                     }
-
-                    
                 }
             }
             .navigationDestination(for: String.self) { value in  // Define destination here
