@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct DetailsView: View {
-    @Binding var path: NavigationPath
+//    @Binding var path: NavigationPath
+    @EnvironmentObject var router: AppRouter
     var location: Location
     var body: some View {
         ZStack{
@@ -33,7 +34,8 @@ struct DetailsView: View {
                     .toolbar(content: {
                         ToolbarItem(placement: .topBarLeading){
                             Button(action: {
-                                path.removeLast()
+//                                path.removeLast()
+                                router.goBack()
                             }) {
                                 Text("Back")
                                     .foregroundStyle(.blue)
@@ -47,7 +49,8 @@ struct DetailsView: View {
                         }
                         ToolbarItem(placement: .topBarTrailing){
                             Button(action: {
-                                path=NavigationPath()  
+//                                path=NavigationPath()
+                                router.goToHome()
                             }) {
                                 Text("Home")
                                     .foregroundStyle(.blue)
@@ -60,6 +63,9 @@ struct DetailsView: View {
                     
                    
             }
+        }
+        .onAppear {
+            print(" AppRouter available in Details view: \(String(describing: router))")
         }
         .navigationBarBackButtonHidden()
     }

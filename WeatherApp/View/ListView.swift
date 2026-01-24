@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ListView: View {
-    @Binding var path: NavigationPath
+//    @Binding var path: NavigationPath
+    @EnvironmentObject var router: AppRouter 
     @StateObject var listViewModel: ListViewModel = ListViewModel()
     var body: some View {
         ZStack{
@@ -34,26 +35,40 @@ struct ListView: View {
 //                }
 //               Spacer()
                 List(listViewModel.filteredLocations){
-                    location in NavigationLink(value: location){
-                        HStack{
-                            Text(location.name)
-                                .font(.headline)
-                                .foregroundColor(.white)
-                            Spacer()
-                            Image(systemName: location.weather.icon)
-                                .foregroundStyle(.yellow)
-                        }
-                    }.listRowBackground(Color.clear)
+                    location in
+//                    NavigationLink(value: location){
+//                        HStack{
+//                            Text(location.name)
+//                                .font(.headline)
+//                                .foregroundColor(.white)
+//                            Spacer()
+//                            Image(systemName: location.weather.icon)
+//                                .foregroundStyle(.yellow)
+//                        }
+//                    }
+                    Button(action:{router.navigate(to: .locationDetailView(location: location))}){
+                                                HStack{
+                                                    Text(location.name)
+                                                        .font(.headline)
+                                                        .foregroundColor(.white)
+                                                    Spacer()
+                                                    Image(systemName: location.weather.icon)
+                                                        .foregroundStyle(.yellow)
+                                                }
+                    }
+                    .listRowBackground(Color.clear)
                        
                 }
-                .navigationDestination(for: Location.self){
-                    location in DetailsView( path: $path, location: location)
-                }
+//                .navigationDestination(for: Location.self){
+////                    location in DetailsView( path: $path, location: location)
+//                    location in DetailsView(  location: location)
+//                }
                 .scrollContentBackground(.hidden)
                 .toolbar(content: {
                     ToolbarItem(placement: .topBarLeading){
                         Button(action: {
-                            path.removeLast()
+//                            path.removeLast()
+                            router.goBack()
                         }) {
                             Text("Back")
                                 .foregroundStyle(.blue)
@@ -70,13 +85,18 @@ struct ListView: View {
                 
                
                 Button("See Developer Info") {
-                    path.append("DeveloperInfo")
+//                    path.append("DeveloperInfo")
+                    router.navigate(to: .developerView)
                 }
                 
 //                Spacer()
                  
             }
         }
+        .onAppear {
+            print(" AppRouter available in List view: \(String(describing: router))")
+        }
+
         .navigationBarBackButtonHidden()
     }
     
