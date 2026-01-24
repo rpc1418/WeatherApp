@@ -36,21 +36,21 @@ struct ContentView: View {
                             .frame(width: 50, height: 50)
                             .background(Circle().fill(.blue))
                     }
-                    NavigationLink(value: "DeveloperInfo") {  // Use value: instead of destination
+                    NavigationLink(value: "DeveloperInfo") {  
                         Text("See Developer info")
                             .padding()
                     }
                 }
             }
-            .navigationDestination(for: String.self) { value in  // Define destination here
+            .navigationDestination(for: String.self) { value in
                 switch value {
                 case "NextScreen":  ListView(path: $path)
                 case "DeveloperInfo": DeveloperInfoView()
                 default: EmptyView()
-                }  // Pass path and value
+                }
             }
         }
-        Text("number of view in stack:\(path.count)")
+//        Text("number of view in stack:\(path.count)")
     }
 }
 

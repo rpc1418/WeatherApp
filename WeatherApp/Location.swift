@@ -44,10 +44,10 @@ struct Location: Identifiable, Hashable{
     var weather: Weather
     var temperature: Temperature
     func hash(into hasher: inout Hasher) {
-            hasher.combine(id)  // Hash only what you need
+            hasher.combine(id)
             hasher.combine(name)
         }
     static func == (lhs: Location, rhs: Location) -> Bool {
-            lhs.id == rhs.id  // Or include other fields: && lhs.name == rhs.name
+            lhs.id == rhs.id  
         }
 }
