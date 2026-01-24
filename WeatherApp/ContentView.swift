@@ -20,7 +20,7 @@ struct ContentView: View {
                     Image("weather-icon")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)  // Set size
+                        .frame(width: 100, height: 100)
                         .clipShape(Circle())
                     Text("Breeze").foregroundStyle(.white)
                         .bold()
@@ -29,7 +29,7 @@ struct ContentView: View {
                         .foregroundStyle(.gray)
                     Spacer()
 
-                    NavigationLink(value: "NextScreen") {  // Use value: instead of destination
+                    NavigationLink(value: "NextScreen") {
                         Image(systemName: "arrow.right.circle.fill")
                             .font(.title2)
                             .foregroundStyle(.white)
@@ -50,7 +50,7 @@ struct ContentView: View {
                 }  // Pass path and value
             }
         }
-//        Text("number of view in stack:\(path.count)")
+        Text("number of view in stack:\(path.count)")
     }
 }
 
