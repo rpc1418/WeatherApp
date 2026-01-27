@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		247569942F24B404006066BA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 247569932F24B404006066BA /* README.md */; };
 		24756A1C2F28A68B006066BA /* LandingView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756A1A2F28A68B006066BA /* LandingView.png */; };
-		24756A1D2F28A68B006066BA /* DetailsView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756A192F28A68B006066BA /* DetailsView.png */; };
 		24756A1E2F28A68B006066BA /* ListView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756A1B2F28A68B006066BA /* ListView.png */; };
+		24756A202F28E0CD006066BA /* DetailsView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756A1F2F28E0CD006066BA /* DetailsView.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		247568DA2F233F73006066BA /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		247569932F24B404006066BA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		24756A192F28A68B006066BA /* DetailsView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailsView.png; sourceTree = "<group>"; };
 		24756A1A2F28A68B006066BA /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
 		24756A1B2F28A68B006066BA /* ListView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListView.png; sourceTree = "<group>"; };
+		24756A1F2F28E0CD006066BA /* DetailsView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailsView.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -46,9 +46,9 @@
 				247568DC2F233F73006066BA /* WeatherApp */,
 				247568DB2F233F73006066BA /* Products */,
 				247569932F24B404006066BA /* README.md */,
-				24756A192F28A68B006066BA /* DetailsView.png */,
 				24756A1A2F28A68B006066BA /* LandingView.png */,
 				24756A1B2F28A68B006066BA /* ListView.png */,
+				24756A1F2F28E0CD006066BA /* DetailsView.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,8 +125,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				247569942F24B404006066BA /* README.md in Resources */,
+				24756A202F28E0CD006066BA /* DetailsView.png in Resources */,
 				24756A1C2F28A68B006066BA /* LandingView.png in Resources */,
-				24756A1D2F28A68B006066BA /* DetailsView.png in Resources */,
 				24756A1E2F28A68B006066BA /* ListView.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

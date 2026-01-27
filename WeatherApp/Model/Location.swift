@@ -29,14 +29,14 @@ enum Weather {
     }
 }
 
-struct Temperature{
-    let min: Int
-    let max: Int
-    
-    var temperatureText: String {
-        "\(min)°C / \(max)°C"
-    }
-}
+//struct Temperature{
+//    let min: Int
+//    let max: Int
+//    
+//    var temperatureText: String {
+//        "\(min)°C / \(max)°C"
+//    }
+//}
 
 struct Location: Identifiable, Hashable{
     let id = UUID()
@@ -44,7 +44,16 @@ struct Location: Identifiable, Hashable{
     let latitude: Double
     let longitude: Double
     var weather: Weather
-    var temperature: Temperature
+    var temperature: String = "--"
+    var uvIndex: String = "--"
+    var windSpeed: String = "--"
+    var rainSum: String = "--"
+    var humidity: String = "--"
+    var visibility: String = "--"
+    var precipitationProbablity: String = "--"
+    var sunset: String = "--"
+    var sunrise: String = "--"
+    
     func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(name)

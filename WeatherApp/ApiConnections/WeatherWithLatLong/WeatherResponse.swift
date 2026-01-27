@@ -7,14 +7,16 @@
 
 import Foundation
 
-// MARK: - WeatheResponse
+
+
+// MARK: - WeatherResponse
 struct WeatherResponse: Codable {
     let latitude, longitude, generationtimeMS: Double
     let utcOffsetSeconds: Int
     let timezone, timezoneAbbreviation: String
     let elevation: Int
-    let currentUnits: CurrentUnits
-    let current: Current
+    let dailyUnits: DailyUnits
+    let daily: Daily
 
     enum CodingKeys: String, CodingKey {
         case latitude, longitude
@@ -23,32 +25,50 @@ struct WeatherResponse: Codable {
         case timezone
         case timezoneAbbreviation = "timezone_abbreviation"
         case elevation
-        case currentUnits = "current_units"
-        case current
+        case dailyUnits = "daily_units"
+        case daily
     }
 }
 
-// MARK: - Current
-struct Current: Codable {
-    let time: String
-    let interval: Int
-    let temperature2M: Double
-    let weatherCode: Int
+// MARK: - Daily
+struct Daily: Codable {
+    let time: [String]
+    let temperature2MMax, temperature2MMin, uvIndexMax, windSpeed10MMax: [Double]
+    let rainSum, relativeHumidity2MMean: [Int]
+    let visibilityMean: [Double]
+    let precipitationProbabilityMean: [Int]
+    let sunset, sunrise: [String]
 
     enum CodingKeys: String, CodingKey {
-        case time, interval
-        case temperature2M = "temperature_2m"
-        case weatherCode = "weather_code"
+        case time
+        case temperature2MMax = "temperature_2m_max"
+        case temperature2MMin = "temperature_2m_min"
+        case uvIndexMax = "uv_index_max"
+        case windSpeed10MMax = "wind_speed_10m_max"
+        case rainSum = "rain_sum"
+        case relativeHumidity2MMean = "relative_humidity_2m_mean"
+        case visibilityMean = "visibility_mean"
+        case precipitationProbabilityMean = "precipitation_probability_mean"
+        case sunset, sunrise
     }
 }
 
-// MARK: - CurrentUnits
-struct CurrentUnits: Codable {
-    let time, interval, temperature2M, weatherCode: String
+// MARK: - DailyUnits
+struct DailyUnits: Codable {
+    let time, temperature2MMax, temperature2MMin, uvIndexMax: String
+    let windSpeed10MMax, rainSum, relativeHumidity2MMean, visibilityMean: String
+    let precipitationProbabilityMean, sunset, sunrise: String
 
     enum CodingKeys: String, CodingKey {
-        case time, interval
-        case temperature2M = "temperature_2m"
-        case weatherCode = "weather_code"
+        case time
+        case temperature2MMax = "temperature_2m_max"
+        case temperature2MMin = "temperature_2m_min"
+        case uvIndexMax = "uv_index_max"
+        case windSpeed10MMax = "wind_speed_10m_max"
+        case rainSum = "rain_sum"
+        case relativeHumidity2MMean = "relative_humidity_2m_mean"
+        case visibilityMean = "visibility_mean"
+        case precipitationProbabilityMean = "precipitation_probability_mean"
+        case sunset, sunrise
     }
 }
