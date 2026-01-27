@@ -70,9 +70,11 @@ struct ListView: View {
 //                            path.removeLast()
                             router.goBack()
                         }) {
-                            Text("Back")
-                                .foregroundStyle(.blue)
-                                .font(.title2)
+                            Image(systemName: "arrow.left")
+                               .font(.title2)
+                               .bold(true)
+                               .foregroundStyle(.white)
+                               .frame(width: 50, height: 50)
                         }
                       
                     }
@@ -93,9 +95,9 @@ struct ListView: View {
                  
             }
         }
-        .onAppear {
-            print(" AppRouter available in List view: \(String(describing: router))")
-        }
+//        .onAppear {
+//            print(" AppRouter available in List view: \(String(describing: router))")
+//        }
 
         .navigationBarBackButtonHidden()
     }

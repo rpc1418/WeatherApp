@@ -41,6 +41,8 @@ struct Temperature{
 struct Location: Identifiable, Hashable{
     let id = UUID()
     var name: String
+    let latitude: Double
+    let longitude: Double
     var weather: Weather
     var temperature: Temperature
     func hash(into hasher: inout Hasher) {

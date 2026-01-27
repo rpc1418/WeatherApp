@@ -46,8 +46,9 @@ struct LandingView: View {
 //                            print("tapped")
                             router.navigate(to: .listLocationView)
                         }){
-                            Image(systemName: "arrow.right.circle.fill")
+                            Image(systemName: "arrow.right")
                                .font(.title2)
+                               .bold(true)
                                .foregroundStyle(.white)
                                .frame(width: 50, height: 50)
                                .background(Circle().fill(.blue))
@@ -62,9 +63,9 @@ struct LandingView: View {
                         }
                     }
                 }
-                .onAppear {
-                    print(" AppRouter available in landing view: \(String(describing: router))")
-                }
+//                .onAppear {
+//                    print(" AppRouter available in landing view: \(String(describing: router))")
+//                }
     //            .navigationDestination(for: String.self) { value in
     //                switch value {
     //                case "NextScreen":  ListView(path: $path)
