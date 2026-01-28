@@ -18,17 +18,37 @@ This repository contains an Xcode project built with Swift. It is structured to 
 
 - **Landing Page (List View)**
 
-<img src="LandingView.png" width="400" alt="LandingView Page ">
+<img src="LandingView.png" width="200" alt="LandingView Page ">
 
 - **ListView Page**
 
-<img src="ListView.png" width="400" alt="ListView Page">
-
-- **DetailsView Page**
-
-<img src="DetailsView.png" width="400" alt="DetailsView Page">
+<img src="ListView.png" width="200" alt="ListView Page">
 
 
+- **Add Location Page**
+
+<img src="AddView.png" width="200" alt="Add Location Page">
+
+- **Edit Location Page**
+
+<img src="EditView.png" width="200" alt="Edit Location Page">
+
+- **Edge Delete**
+
+<img src="EdgeDelete.png" width="200" alt="Edge Delete">
+
+- **Context Menu**
+
+<img src="ContextMenu.png" width="200" alt="Context Menu">
+
+
+- **DetailsView Page from save**
+
+<img src="DetailsViewSave.png" width="200" alt="DetailsView Page">
+
+- **DetailsView Page from live api**
+
+<img src="DetailsViewLive.png" width="200" alt="DetailsView Page">
 
 
 ## Requirements

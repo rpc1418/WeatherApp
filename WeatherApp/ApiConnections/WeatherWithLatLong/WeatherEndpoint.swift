@@ -25,7 +25,7 @@ struct WeatherEndpoint: ApiEndpoint {
             URLQueryItem(name: "longitude", value: "\(request.longitude)"),
             URLQueryItem(name: "timezone", value: "Asia/Singapore"),
             URLQueryItem(name: "forecast_days", value: "1"),
-            URLQueryItem(name: "daily", value: "temperature_2m_max,temperature_2m_min,uv_index_max,wind_speed_10m_max,rain_sum,relative_humidity_2m_mean,visibility_mean,precipitation_probability_mean,sunset,sunrise")
+            URLQueryItem(name: "daily", value: "temperature_2m_max,temperature_2m_min,uv_index_max,wind_speed_10m_max,rain_sum,relative_humidity_2m_mean,visibility_mean,precipitation_probability_mean,sunset,sunrise,weather_code")
         ]
     }
 

@@ -6,77 +6,131 @@
 //
 
 import SwiftUI
+import Combine
 
 struct DetailsView: View {
-    //    @Binding var path: NavigationPath
     @StateObject var detailsViewModel: DetailsViewModel = DetailsViewModel()
     @EnvironmentObject var router: AppRouter
     var location: Location
+    @State var fromLiveApi: Bool = false
+    @State var lastUpdatedTime: Double = 0.0
     var body: some View {
         ZStack {
             Color("backgroundColor").ignoresSafeArea()
-   
-                VStack{
+
+            VStack {
+                Spacer()
+
+                if detailsViewModel.isLoading {
+                    Text("Loading...")
+                        .font(.system(size: 50))
+                        .foregroundStyle(.white)
                     Spacer()
-                    
-                    if detailsViewModel.isLoading {
-                        Text("Loading...")
-                    } else {
-                        Text("\(location.name)")
-                            .font(.system(size: 50))
-                            .foregroundStyle(.white)
-                        Text("Precipitation Probablity:\(detailsViewModel.locationUpdated.precipitationProbablity)")
-                            .font(.system(size: 18))
-                            .foregroundStyle(.gray)
-                        Image(systemName: location.weather.icon)
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .foregroundStyle(.yellow)
-                        Text(detailsViewModel.locationUpdated.temperature)
-                            .font(.title)
-                            .bold()
-                            .foregroundStyle(.white)
-                        VStack {
-                           
-                            HStack(spacing: 12) {
-                                
-                                InfoCard( title: "UV Index", value: detailsViewModel.locationUpdated .uvIndex )
-                                InfoCard( title: "Wind Speed", value: detailsViewModel.locationUpdated.windSpeed )
-                                 }
-                            .padding(.horizontal) .padding(.vertical, 10)
-                            HStack(spacing: 12) {
-                                InfoCard( title: "Rain", value: detailsViewModel.locationUpdated .rainSum )
-                                InfoCard( title: "Humidity", value: detailsViewModel.locationUpdated.humidity )
-                                 }
-                            .padding(.horizontal) .padding(.vertical, 10)
-                            HStack(spacing: 12) {
-                                InfoCard( title: "Sunrise", value: detailsViewModel.locationUpdated .sunrise )
-                                InfoCard( title: "Sunset", value: detailsViewModel.locationUpdated.sunset )
-                                 }
-                            .padding(.horizontal) .padding(.vertical, 10)
-
+                } else if detailsViewModel.errorMessage == nil{
+                    Text("\(location.name ?? "---")")
+                        .font(.system(size: 50))
+                        .foregroundStyle(.white)
+                    Text(
+                        "Precipitation Probablity:\(location.precipitationProbablity  ?? "---")"
+                    )
+                    .font(.system(size: 18))
+                    .foregroundStyle(.gray)
+                    Image(systemName: location.weather ?? "sun.max")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .foregroundStyle(.yellow)
+                    Text(location.temperature ?? "na")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(.white)
+                    Button {
+                        fromLiveApi=true
+                        Task{
+                            await detailsViewModel.loadWeather(location: location)
+                            lastUpdatedTime = detailsViewModel.timeUpdatedLast(location: location)
                         }
-
-                        if detailsViewModel.errorMessage != nil {
-                            Text("\(detailsViewModel.errorMessage!)")
-                                .font(.title)
-                                .foregroundStyle(.white)
+                       
+                    } label: {
+                        if fromLiveApi {
+                            Text("from Live")
+                                .foregroundStyle(Color.white)
+                                .bold()
+                        } else {
+                            Text("from Save")
+                                .foregroundStyle(Color.white)
+                                .bold()
+                            
                         }
-
+                    }
+                    .padding(5)
+                    .background(!fromLiveApi ? .orange : .green)
+                    .cornerRadius(30)
+//                    if !fromLiveApi{
+                        Text(
+                            "fetched \(lastUpdatedTime)sec ago"
+                        )
+                        .font(.system(size: 12))
+                        .foregroundStyle(.gray)
+//                    }
+                    VStack {
+                        HStack(spacing: 12) {
+                            InfoCard(
+                                title: "UV Index",
+                                value: location.uvIndex ?? "NA"
+                            )
+                            InfoCard(
+                                title: "Wind Speed",
+                                value: location.windSpeed ?? "NA"
+                            )
+                        }
+                        .padding(.horizontal).padding(.vertical, 10)
+                        HStack(spacing: 12) {
+                            InfoCard(
+                                title: "Rain",
+                                value: location.rainSum ?? "---"
+                            )
+                            InfoCard(
+                                title: "Humidity",
+                                value: location.humidity ?? "---"
+                            )
+                        }
+                        .padding(.horizontal).padding(.vertical, 10)
+                        HStack(spacing: 12) {
+                            InfoCard(
+                                title: "Sunrise",
+                                value: location.sunrise ?? "---"
+                            )
+                            InfoCard(
+                                title: "Sunset",
+                                value: location.sunset ?? "---"
+                            )
+                        }
+                        .padding(.horizontal).padding(.vertical, 10)
                     }
                     
-
                 }
-            
-            
+                if detailsViewModel.errorMessage != nil {
+                    Text("\(detailsViewModel.errorMessage!)")
+                        .font(.title)
+                        .foregroundStyle(.white)
+                }
+            }
         }
         .task {
-            await detailsViewModel.loadWeather(location: location)
+            lastUpdatedTime = detailsViewModel.timeUpdatedLast(location: location)
+        if(lastUpdatedTime>60 || location.lastUpdated == nil){
+                
+                await detailsViewModel.loadWeather(location: location)
+                fromLiveApi = true
+                lastUpdatedTime = detailsViewModel.timeUpdatedLast(location: location)
+            }else{
+                fromLiveApi=false
+            }
+            
         }
         .toolbar(content: {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
-                    //                                path.removeLast()
                     router.goBack()
                 }) {
                     Image(systemName: "arrow.left")
@@ -88,12 +142,11 @@ struct DetailsView: View {
 
             }
             ToolbarItem(placement: .principal) {
-                Text("\(location.name)'s Weather")
+                Text("\(location.name ?? "---")'s Weather")
                     .foregroundStyle(.white)
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
-                    //                                path=NavigationPath()
                     router.goToHome()
                 }) {
                     Image(systemName: "house")
@@ -102,48 +155,11 @@ struct DetailsView: View {
                         .foregroundStyle(.white)
                         .frame(width: 50, height: 50)
                 }
-
             }
         }
         )
-        //        .onAppear {
-        //            print(" AppRouter available in Details view: \(String(describing: router))")
-        //        }
+        
+        
         .navigationBarBackButtonHidden()
     }
-}
-
-struct InfoCard: View {
-    let title: String
-    let value: String
-
-    var body: some View {
-        VStack (alignment: .leading){
-            Text(title)
-                .font(.title2)
-                .foregroundStyle(.gray)
-                .bold()
-                .multilineTextAlignment(.leading)
-            Text(value)
-                .font(.title)
-                .bold()
-                .foregroundStyle(.white)
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-
-        .background(.gray.opacity(0.3))
-        .cornerRadius(10)
-    }
-}
-
-#Preview {
-    DetailsView(
-        location: Location(
-            name: "Berlin",
-            latitude: 52.52,
-            longitude: 13.419998,
-            weather: .foggy
-        )
-    )
 }

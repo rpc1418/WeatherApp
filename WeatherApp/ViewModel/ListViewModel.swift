@@ -7,89 +7,96 @@
 
 import SwiftUI
 import Combine
+import CoreData
 
 class ListViewModel: ObservableObject {
     @Published var searchText: String = ""
-    @Published var locations: [Location] = [
-        Location(
-            name: "Mumbai",
-            latitude: 19.0760,
-            longitude: 72.8777,
-            weather: .sunny,
-//            temperature: Temperature(min: 22, max: 32)
-        ),
-        Location(
-            name: "New Delhi",
-            latitude: 28.6139,
-            longitude: 77.2090,
-            weather: .foggy,
-//            temperature: Temperature(min: 11, max: 24)
-        ),
-        Location(
-            name: "Chennai",
-            latitude: 13.0827,
-            longitude: 80.2707,
-            weather: .sunny,
-//            temperature: Temperature(min: 24, max: 36)
-        ),
-        Location(
-            name: "Pune",
-            latitude: 18.5204,
-            longitude: 73.8567,
-            weather: .sunny,
-//            temperature: Temperature(min: 22, max: 32)
-        ),
-        Location(
-            name: "Bengaluru",
-            latitude: 12.9716,
-            longitude: 77.5946,
-            weather: .rainy,
-//            temperature: Temperature(min: 24, max: 30)
-        ),
-        Location(
-            name: "Gurgaon",
-            latitude: 28.4595,
-            longitude: 77.0266,
-            weather: .foggy,
-//            temperature: Temperature(min: 11, max: 23)
-        ),
-        Location(
-            name: "Noida",
-            latitude: 28.5355,
-            longitude: 77.3910,
-            weather: .snow,
-//            temperature: Temperature(min: 9, max: 22)
-        ),
-        Location(
-            name: "Hyderabad",
-            latitude: 17.3850,
-            longitude: 78.4867,
-            weather: .windy,
-//            temperature: Temperature(min: 22, max: 32)
-        ),
-        Location(
-            name: "Ahemedabad",
-            latitude: 23.0225,
-            longitude: 72.5714,
-            weather: .sunny,
-//            temperature: Temperature(min: 20, max: 32)
-        ),
-        Location(
-            name: "Indore",
-            latitude: 22.7196,
-            longitude: 75.8577,
-            weather: .sunny,
-//            temperature: Temperature(min: 18, max: 24)
-        )
+    @Published var locations: [Location] = []
+    let testLocations: [(name: String, lat: Double, lon: Double)] = [
+        ("New York", 40.7128, -74.0060),
+        ("London", 51.5074, -0.1278),
+        ("Paris", 48.8566, 2.3522),
+        ("Sydney", -33.8688, 151.2093),
+        ("Reykjavik", 64.1355, -21.8954),
+        ("Tokyo", 35.6762, 139.6503),
+        ("São Paulo", -23.5505, -46.6333),
+        ("Berlin", 52.5200, 13.4050),
+        ("Seattle", 47.6062, -122.3321),
+        ("Denver", 39.7392, -104.9903)
     ]
+//
+//    @Published var container: NSPersistentContainer
+    private var prCon = PersistenceController.shared
+    init(){
+//        container = NSPersistentContainer(name: "LocationModel")
+//        container.loadPersistentStores { (_, error) in
+//            if let error = error as NSError? {
+//                fatalError("Unresolved error \(error), \(error.userInfo)")
+//            }else {
+//                print("Container Connectd successfully")
+//            }
+//        }
+        
+        loadLocations()
+    }
+    
+    func loadLocations(){
+        locations=prCon.fetchLocations()
+    }
+//
+    
+    func addLocation(name: String,latitude: Double, longitude: Double){
+        prCon.createLocation(name: name, latitude: latitude, longitude: longitude)
+        saveContext()
+    }
+    
+    func deleteTask(indexSet: IndexSet){
+        guard let index = indexSet.first else { return }
+        let entity = locations[index]
+        prCon.weatherListContainer.viewContext.delete(entity)
+        saveContext()
+    }
+    
+    func saveContext(){
+        prCon.saveContext()
+        loadLocations()
+    }
+    
+
+    func addTestLocations() {
+        testLocations.forEach { name, lat, lon in
+            prCon.createLocation(name: name, latitude: lat, longitude: lon)
+        }
+        saveContext()
+    }
+    
+    func deleteAll() {
+        prCon.deleteAllLocations()
+        loadLocations()
+    }
+    
+    func deleteByEntity(location: Location){
+        prCon.weatherListContainer.viewContext.delete(location)
+        saveContext()
+    }
+    
+    func updateLocation(location:Location, name: String,latitude: Double, longitude: Double){
+        location.name = name
+        location.latitude = latitude
+        location.longitude = longitude
+        saveContext()
+    }
 
     var filteredLocations: [Location] {
         if searchText.isEmpty {
             return locations
-        }else {
-            return  locations.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
+        } else {
+            let term = searchText.lowercased()
+            return locations.filter {
+                ($0.name ?? "").lowercased().contains(term)
+            }
         }
-       
     }
+
 }
 
