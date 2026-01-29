@@ -11,9 +11,20 @@ struct WeatherEndpoint: ApiEndpoint {
     
     let request: WeatherRequest
     
-    var baseURL: String{
-        "https://api.open-meteo.com"
+    var baseURL: String {
+        guard let url = ProcessInfo.processInfo.environment["API_BASE_URL"],
+              !url.isEmpty else {
+            print("not available in env trying from config files")
+            guard let plistURL = Bundle.main.object(forInfoDictionaryKey: "Baseurl") as? String,
+                  !plistURL.isEmpty else {
+                return "https://api.open-meteo.com"
+            }
+            print("From plist: \(plistURL)")
+            return plistURL
+        }
+        return url
     }
+
     
     var path: String {
         "/v1/forecast"

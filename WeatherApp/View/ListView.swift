@@ -26,7 +26,7 @@ struct ListView: View {
             VStack {
 
                 List {
-                    ForEach(listViewModel.locations) {
+                    ForEach(listViewModel.filteredLocations) {
                         location in
                         Button(action: {
                             router.navigate(

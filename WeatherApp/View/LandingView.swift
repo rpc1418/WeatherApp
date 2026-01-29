@@ -47,5 +47,23 @@ struct LandingView: View {
                 }
             }
         }
+        .onAppear {
+           
+
+            if let config = Bundle.main.object(forInfoDictionaryKey: "configuration") as? String {
+                print("CONFIGURATION: \(config)")
+            }
+            
+            if let baseURL = Bundle.main.object(forInfoDictionaryKey: "Baseurl") as? String {
+                print("FromConVar: \(baseURL)")
+            }
+            
+            if let basURLFromENV = ProcessInfo.processInfo.environment["API_BASE_URL"] {
+                print("FromEnvVar: \(basURLFromENV)")
+            }
+
+        }
+        
+        
     }
 }
