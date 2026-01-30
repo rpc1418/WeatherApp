@@ -16,6 +16,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2400C85A2F2D4DB30078C71B /* Exceptions for "Snapshots" folder in "WeatherApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Dark/AddView.png,
+				Dark/ContextMenu.png,
+				Dark/DetailsViewLive.png,
+				Dark/DetailsViewSave.png,
+				Dark/EdgeDelete.png,
+				Dark/EditView.png,
+				Dark/LandingView.png,
+				Dark/ListView.png,
+				Light/AddView.png,
+				Light/ContextMenu.png,
+				Light/DetailsViewLive.png,
+				Light/DetailsViewSave.png,
+				Light/EdgeDelete.png,
+				Light/EditView.png,
+				Light/LandingView.png,
+				Light/ListView.png,
+			);
+			target = 247568D92F233F73006066BA /* WeatherApp */;
+		};
 		247B01102F2BF2CD006CE305 /* Exceptions for "WeatherApp" folder in "WeatherApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -28,6 +50,9 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2400C8352F2CDF270078C71B /* Snapshots */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2400C85A2F2D4DB30078C71B /* Exceptions for "Snapshots" folder in "WeatherApp" target */,
+			);
 			path = Snapshots;
 			sourceTree = "<group>";
 		};
