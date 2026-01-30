@@ -8,27 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		247569942F24B404006066BA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 247569932F24B404006066BA /* README.md */; };
-		24756A1C2F28A68B006066BA /* LandingView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756A1A2F28A68B006066BA /* LandingView.png */; };
-		24756B6F2F2ACC58006066BA /* ListView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B6E2F2ACC58006066BA /* ListView.png */; };
-		24756B702F2ACC58006066BA /* AddView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B682F2ACC58006066BA /* AddView.png */; };
-		24756B712F2ACC58006066BA /* DetailsViewSave.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B6B2F2ACC58006066BA /* DetailsViewSave.png */; };
-		24756B722F2ACC58006066BA /* EditView.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B6D2F2ACC58006066BA /* EditView.png */; };
-		24756B732F2ACC58006066BA /* EdgeDelete.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B6C2F2ACC58006066BA /* EdgeDelete.png */; };
-		24756B742F2ACC58006066BA /* ContextMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B692F2ACC58006066BA /* ContextMenu.png */; };
-		24756B752F2ACC58006066BA /* DetailsViewLive.png in Resources */ = {isa = PBXBuildFile; fileRef = 24756B6A2F2ACC58006066BA /* DetailsViewLive.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		247568DA2F233F73006066BA /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		247569932F24B404006066BA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		24756A1A2F28A68B006066BA /* LandingView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LandingView.png; sourceTree = "<group>"; };
-		24756B682F2ACC58006066BA /* AddView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddView.png; sourceTree = "<group>"; };
-		24756B692F2ACC58006066BA /* ContextMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ContextMenu.png; sourceTree = "<group>"; };
-		24756B6A2F2ACC58006066BA /* DetailsViewLive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailsViewLive.png; sourceTree = "<group>"; };
-		24756B6B2F2ACC58006066BA /* DetailsViewSave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DetailsViewSave.png; sourceTree = "<group>"; };
-		24756B6C2F2ACC58006066BA /* EdgeDelete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EdgeDelete.png; sourceTree = "<group>"; };
-		24756B6D2F2ACC58006066BA /* EditView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EditView.png; sourceTree = "<group>"; };
-		24756B6E2F2ACC58006066BA /* ListView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ListView.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -42,6 +26,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2400C8352F2CDF270078C71B /* Snapshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Snapshots;
+			sourceTree = "<group>";
+		};
 		247568DC2F233F73006066BA /* WeatherApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -69,14 +58,7 @@
 				247568DC2F233F73006066BA /* WeatherApp */,
 				247568DB2F233F73006066BA /* Products */,
 				247569932F24B404006066BA /* README.md */,
-				24756B682F2ACC58006066BA /* AddView.png */,
-				24756B692F2ACC58006066BA /* ContextMenu.png */,
-				24756B6A2F2ACC58006066BA /* DetailsViewLive.png */,
-				24756B6B2F2ACC58006066BA /* DetailsViewSave.png */,
-				24756B6C2F2ACC58006066BA /* EdgeDelete.png */,
-				24756B6D2F2ACC58006066BA /* EditView.png */,
-				24756B6E2F2ACC58006066BA /* ListView.png */,
-				24756A1A2F28A68B006066BA /* LandingView.png */,
+				2400C8352F2CDF270078C71B /* Snapshots */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +86,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2400C8352F2CDF270078C71B /* Snapshots */,
 				247568DC2F233F73006066BA /* WeatherApp */,
 			);
 			name = WeatherApp;
@@ -153,14 +136,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				247569942F24B404006066BA /* README.md in Resources */,
-				24756A1C2F28A68B006066BA /* LandingView.png in Resources */,
-				24756B6F2F2ACC58006066BA /* ListView.png in Resources */,
-				24756B702F2ACC58006066BA /* AddView.png in Resources */,
-				24756B712F2ACC58006066BA /* DetailsViewSave.png in Resources */,
-				24756B722F2ACC58006066BA /* EditView.png in Resources */,
-				24756B732F2ACC58006066BA /* EdgeDelete.png in Resources */,
-				24756B742F2ACC58006066BA /* ContextMenu.png in Resources */,
-				24756B752F2ACC58006066BA /* DetailsViewLive.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

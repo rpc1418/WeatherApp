@@ -23,7 +23,7 @@ struct InfoCard: View {
             Text(value)
                 .font(.title)
                 .bold()
-                .foregroundStyle(.white)
+                .foregroundStyle(Color("foregroundColor"))
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)

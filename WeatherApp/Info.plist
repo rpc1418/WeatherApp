@@ -4,6 +4,8 @@
 <dict>
 	<key>Baseurl</key>
 	<string>$(Base_URL_Conf)</string>
+	<key>LatLongBaseurl</key>
+	<string>$(LatLong_Base_Url_Conf)</string>
 	<key>configuration</key>
 	<string>$(CONFIGURATION)</string>
 </dict>

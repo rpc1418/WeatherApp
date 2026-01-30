@@ -24,12 +24,12 @@ struct DetailsView: View {
                 if detailsViewModel.isLoading {
                     Text("Loading...")
                         .font(.system(size: 50))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color("foregroundColor"))
                     Spacer()
                 } else if detailsViewModel.errorMessage == nil{
                     Text("\(location.name ?? "---")")
                         .font(.system(size: 50))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color("foregroundColor"))
                     Text(
                         "Precipitation Probablity:\(location.precipitationProbablity  ?? "---")"
                     )
@@ -42,7 +42,7 @@ struct DetailsView: View {
                     Text(location.temperature ?? "na")
                         .font(.title)
                         .bold()
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color("foregroundColor"))
                     Button {
                         fromLiveApi=true
                         Task{
@@ -112,7 +112,7 @@ struct DetailsView: View {
                 if detailsViewModel.errorMessage != nil {
                     Text("\(detailsViewModel.errorMessage!)")
                         .font(.title)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color("foregroundColor"))
                 }
             }
         }
@@ -136,14 +136,14 @@ struct DetailsView: View {
                     Image(systemName: "arrow.left")
                         .font(.title2)
                         .bold(true)
-                        .foregroundStyle(.white)
+                        .tint(Color("foregroundColor"))
                         .frame(width: 50, height: 50)
                 }
 
             }
             ToolbarItem(placement: .principal) {
                 Text("\(location.name ?? "---")'s Weather")
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color("foregroundColor"))
             }
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: {
@@ -152,7 +152,7 @@ struct DetailsView: View {
                     Image(systemName: "house")
                         .font(.title2)
                         .bold(true)
-                        .foregroundStyle(.white)
+                        .tint(Color("foregroundColor"))
                         .frame(width: 50, height: 50)
                 }
             }

@@ -38,12 +38,12 @@ struct ListView: View {
                                                                                       .foregroundStyle(.yellow)
                                 Text(location.name ?? "---")
                                     .font(.headline)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color("foregroundColor"))
                                 Spacer()
                                 Text(location.temperature ?? "---")
                                     .font(.headline)
-                                    .foregroundColor(.white)
-                                
+                                    .foregroundColor(Color.foreground)
+
                             }
                         }
                         .listRowBackground(Color.clear)
@@ -80,7 +80,7 @@ struct ListView: View {
                             Image(systemName: "arrow.left")
                                 .font(.title2)
                                 .bold(true)
-                                .foregroundStyle(.white)
+                                .tint(Color("foregroundColor"))
                                 .frame(width: 50, height: 50)
                         }
 
@@ -94,7 +94,7 @@ struct ListView: View {
                             Image(systemName: "plus")
                                 .font(.title2)
                                 .bold(true)
-                                .foregroundStyle(.white)
+                                .tint(Color("foregroundColor"))
                                 .frame(width: 50, height: 50)
                                 .rotationEffect(
                                     .degrees(showAddNewLocation ? 45 : 0)
@@ -104,7 +104,7 @@ struct ListView: View {
                     }
                     ToolbarItem(placement: .principal) {
                         Text("Locations")
-                            .foregroundStyle(.white)
+                            .tint(Color("foregroundColor"))
                     }
                 }
                 ).searchable(
@@ -112,96 +112,11 @@ struct ListView: View {
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search any location...!"
                 )
-
+                
                 if showAddNewLocation {
-                    VStack {
-                        TextField("Name of the Location", text: $name)
-                            .font(.headline)
-                            .padding(.leading)
-                            .frame(height: 55)
-                            .background(.white)
-                            .cornerRadius(10)
-                            .padding(.horizontal)
-                        TextField(
-                            "Latitude of the location",
-                            value: $latitude,
-                            formatter: {
-                                let f = NumberFormatter()
-                                f.numberStyle = .decimal
-                                f.maximumFractionDigits = 6
-                                f.minimumFractionDigits = 0
-                                f.allowsFloats = true
-                                return f
-                            }()
-                        )
-                        .font(.headline)
-                        .padding(.leading)
-                        .frame(height: 55)
-                        .background(.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        TextField(
-                            "Longitutde of the location",
-                            value: $longitude,
-                            formatter: {
-                                let f = NumberFormatter()
-                                f.numberStyle = .decimal
-                                f.maximumFractionDigits = 6
-                                f.minimumFractionDigits = 0
-                                f.allowsFloats = true
-                                return f
-                            }()
-                        )
-                        .font(.headline)
-                        .padding(.leading)
-                        .frame(height: 55)
-                        .background(.white)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        Button(
-                            action: {
-                                print("for edit \(forEdit)")
-                                guard !name.isEmpty else {
-                                    return
-                                }
-                                if forEdit {
-                                    listViewModel.updateLocation(
-                                        location: dummyLocationForUpdate!,
-                                        name: name,
-                                        latitude: latitude ?? 0.0,
-                                        longitude: longitude ?? 0.0
-                                    )
-                                } else{
-                                    listViewModel.addLocation(
-                                        name: name,
-                                        latitude: latitude ?? 0.0,
-                                        longitude: longitude ?? 0.0
-                                    )
-                                }
-                                
-                                forEdit = false
-                                showAddNewLocation=false
-                                name = ""
-                                latitude = nil
-                                longitude = nil
-                            }
-                        ) {
-                            Text(forEdit ? "Update Location" : "Add Location")
-                                .font(Font.headline.bold())
-                                .frame(height: 55)
-                                .frame(maxWidth: .infinity)
-                                .foregroundStyle(.white)
-                                .background(.blue)
-                                .padding(.horizontal)
-                        }
-                        .padding(.top)
-                        .cornerRadius(30)
-                        .shadow(radius: 10)
-                        .transition(
-                            .move(edge: showAddNewLocation ? .bottom : .top)
-                        )
-                        .zIndex(1)
-                    }
+                    AddEditLoc(name: $name, latitude: $latitude, longitude: $longitude, showAddNewLocation: $showAddNewLocation, dummyLocationForUpdate: $dummyLocationForUpdate, listViewModel: listViewModel, forEdit: $forEdit)
+//                        .padding(.bottom,-15)
+                 
                 } else {
                     HStack(spacing: 20){
                         Button("Load famous Locations coordinates") {
@@ -212,9 +127,8 @@ struct ListView: View {
                             Label("Delete all Saved Locations", systemImage: "trash")
                         }
                     }
-                    
-                    
                 }
+                
             }
         }
         .navigationBarBackButtonHidden()

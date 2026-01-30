@@ -21,11 +21,11 @@ struct LandingView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
-                Text("Breeze").foregroundStyle(.white)
+                Text("Breeze").foregroundStyle(Color.foreground)
                     .bold()
                     .font(.largeTitle)
                 Text("Weather App by Rudraksh Chourey")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(Color("foregroundColor").opacity(0.7))
                 Spacer()
 
                 Button(action: {
@@ -56,6 +56,10 @@ struct LandingView: View {
             
             if let baseURL = Bundle.main.object(forInfoDictionaryKey: "Baseurl") as? String {
                 print("FromConVar: \(baseURL)")
+            }
+            
+            if let baseURL = Bundle.main.object(forInfoDictionaryKey: "LatLongBaseurl") as? String {
+                print("LatLongFromConVar: \(baseURL)")
             }
             
             if let basURLFromENV = ProcessInfo.processInfo.environment["API_BASE_URL"] {

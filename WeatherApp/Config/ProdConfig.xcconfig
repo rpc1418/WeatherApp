@@ -8,3 +8,4 @@
 // Configuration settings file format documentation can be found at:
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 Base_URL_Conf = https:/$()/api.open-meteo.com
+LatLong_Base_Url_Conf = https:/$()/geocoding-api.open-meteo.com
